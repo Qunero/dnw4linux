@@ -7,8 +7,8 @@
 	直接在解压后的目录中make即可；然后在对应的子目录中可以找到编译好的文件；
 	更方便的做法：make install 会直接将相关文件编译好，然后放到当前目录下，
 	编译好的文件为：
-	dnw		---		用于传输数据的软件，用法： dnw filename
-	secbulk.ko	---	识别下载用USB的驱动； 用法： sudo insmod secbulk.ko
+	dnw     ---	    用于传输数据的软件，用法： dnw filename
+	secbulk.ko  --- 识别下载用USB的驱动； 用法： sudo insmod secbulk.ko
 
 2.2 自动化
 	在编译成功后，完成下列步骤方面以后使用：
@@ -20,6 +20,9 @@
 		注意： 将上面的$HOME替换成实际的绝对路径，比如： /home/qulory 
 2.3 清理
 	直接执行make clean， 让你的源码目录干干净净；
+2.4 使用 
+    注意，当前编译好的dnw在32位linux可用，但是secbulk.ko驱动文件需要自己编译
+    必须同当前使用的内核的版本一致，内核版本升级后也需要重新编译；
 
 3、移植帮助：
 要成功移植到类似的开发板，需要以下2步：

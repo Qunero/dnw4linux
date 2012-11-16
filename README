@@ -1,0 +1,35 @@
+1、源码说明：
+	本源代码收集自网络，经过整理和加入宏定义，使其适用于OK6410开发板；对
+	源码进行了适当的注释和错误纠正；同样以GPL协议发布；
+
+2、使用说明：
+2.1 编译
+	直接在解压后的目录中make即可；然后在对应的子目录中可以找到编译好的文件；
+	更方便的做法：make install 会直接将相关文件编译好，然后放到当前目录下，
+	编译好的文件为：
+	dnw		---		用于传输数据的软件，用法： dnw filename
+	secbulk.ko	---	识别下载用USB的驱动； 用法： sudo insmod secbulk.ko
+
+2.2 自动化
+	在编译成功后，完成下列步骤方面以后使用：
+	2.2.1 将dnw放到系统路径： sudo cp dnw /usr/sbin/ 
+	2.2.2 将secbulk.ko驱动设为自动加载：
+		先在住目录建立mydriver目录：mkdir ~/mydriver 
+		将驱动放入自定义mydriver中：cp secbulk.ko ~/mydriver/
+		修改/etc/rc.d/rc.local文件，末尾加入： sudo insmod $HOME/secbulk.ko
+		注意： 将上面的$HOME替换成实际的绝对路径，比如： /home/qulory 
+2.3 清理
+	直接执行make clean， 让你的源码目录干干净净；
+
+3、移植帮助：
+要成功移植到类似的开发板，需要以下2步：
+3.1 驱动处理：
+	进入secbulk_driver子目录，修改文件secbulk.c中的关于DOWNLOAD_USB_ID_MAJOR
+	和DOWNLOAD_USB_ID_MINOR的宏定义，让其与你的usb对应，可以通过lsusb命令查看
+	获得该id的信息；
+3.2 dnw下载地址的处理：
+	进入dnw_src目录，修改dnw.c文件中DOWNLOAD_ADDR的定义，将其设为你的开发板
+	的下载地址；
+
+3.3 有疑问可以联系 Qulory<Quner612@qq.com>;
+
